@@ -1,0 +1,11 @@
+{
+  "name": "since",
+  "version": "0.0.1",
+  "main": "since.js",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}
