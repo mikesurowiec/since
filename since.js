@@ -1,20 +1,26 @@
 define([], function () {
 
   function Since (selector) {
-    this.elements = document.querySelectorAll(selector || '[data-since]');
-    this.interval = 1000 * 60;
+    this.elements = Array.prototype.slice.call(document.querySelectorAll(selector || '[data-since]'));
+    this.interval = 1000 * 30;
   }
 
   var members = {
     find: function (selector) {
-      this.elements = document.querySelectorAll(selector || '[data-since]');
+      this.elements = Array.prototype.slice.call(document.querySelectorAll(selector || '[data-since]'));
     },
 
     addElement: function (element) {
       if (!element) return;
-
+      if (element.length) {
+        for (var i=0, len=element.length; i<len; i++) {
+          var el = element[i].querySelector('[data-since]') || element[i];
+          this.addElement(el);
+        }
+        return;
+      }
       this.elements.push(element);
-      updateTimeForElement(element);
+      this.updateTimeForElement(element);
     },
 
     update: function () {
